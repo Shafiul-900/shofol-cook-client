@@ -13,8 +13,8 @@ const LeftNev = () => {
     }, [])
     return (
         <div>
-            <h4>All Chef Country</h4>
-            <div className='ps-5'>
+            <h5>All Chef Country</h5>
+            <div className='ps-1'>
                 {
                     country.map(country => <p
                         key={country.id}
