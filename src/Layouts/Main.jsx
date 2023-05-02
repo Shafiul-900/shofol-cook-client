@@ -4,6 +4,7 @@ import Footer from '../pages/shared/Footer/Footer';
 import { Col, Container, Row } from 'react-bootstrap';
 import LeftNev from '../pages/shared/LeftNav/LeftNev';
 import RightNav from '../pages/shared/RightNav/RightNav';
+import { Outlet } from 'react-router-dom';
 
 const Main = () => {
     return (
@@ -15,7 +16,7 @@ const Main = () => {
                         <LeftNev></LeftNev>
                     </Col>
                     <Col lg={6}>
-                        <h2>Main is coming..</h2>
+                      <Outlet></Outlet>
                     </Col>
                     <Col lg={3}>
                         <RightNav></RightNav>
