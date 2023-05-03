@@ -5,7 +5,7 @@ import Nevigation from '../NaveVar/Nevigation';
 const Header = () => {
     return (
         <div>
-            <Nevigation></Nevigation>
+           
             <img style={{width: '100%', height: '500px'}} src={banner} alt="" />
         </div>
     );

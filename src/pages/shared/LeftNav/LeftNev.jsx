@@ -6,7 +6,7 @@ const LeftNev = () => {
     const [country, setCountry] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/chef-country')
+        fetch('https://shofol-cook-server-shafiul-900.vercel.app/chef-country')
             .then(res => res.json())
             .then(data => setCountry(data))
             .catch(error => console.log(error))

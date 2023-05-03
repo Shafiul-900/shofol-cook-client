@@ -8,13 +8,12 @@ const Country = () => {
     const countryChef = useLoaderData();
     return (
         <div>
-            <h2>Coutry {countryChef.length}</h2>
+            {id && <h2>Coutry {countryChef.length}</h2>}
             <Row>
                 {
                     countryChef.map(chef => <ChafCart
-
-                        key={chef.id}
-                        chef={chef}
+                        key={chef._id}
+                        data={chef}
                     ></ChafCart>)
                 }
             </Row>

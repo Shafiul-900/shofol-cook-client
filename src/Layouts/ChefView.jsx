@@ -4,12 +4,13 @@ import Footer from '../pages/shared/Footer/Footer';
 import { Col, Container, Row } from 'react-bootstrap';
 import RightNav from '../pages/shared/RightNav/RightNav';
 import { Outlet } from 'react-router-dom';
+import Nevigation from '../pages/shared/NaveVar/Nevigation';
 
 
 const ChefView = () => {
     return (
         <div>
-            <Header></Header>
+            <Nevigation></Nevigation>
             <Container className='mt-5'>
                 <Row>
                     <Col lg={9}>

@@ -3,8 +3,8 @@ import { Button, Card, Col, } from 'react-bootstrap';
 import { FaThumbsUp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const ChafCart = ({ chef }) => {
-    const { _id, title, total_view, experience, number_of_recipes, thumbnail_url, country, details, author } = chef;
+const ChafCart = ({ data }) => {
+    const { _id, total_view, category_id, experience, number_of_recipes, thumbnail_url, country, author } = data;
     return (
         <Col lg={6}>
             <Card className='mb-4'>
@@ -14,14 +14,16 @@ const ChafCart = ({ chef }) => {
                         <Card.Title>{author.name}</Card.Title>
                         <p>{country}</p>
                     </div>
-                    <Card.Text>
+                    <div>
                         <p>Her Recipes:- {number_of_recipes}</p>
                         <p>Exprience {experience} Year</p>
-                    </Card.Text>
+                    </div>
                 </Card.Body>
                 <Card.Footer className='d-flex justify-content-between   align-items-center'>
-                    <p className='d-flex align-items-center justify-content-center'> <span></span> <FaThumbsUp> </FaThumbsUp>{total_view}</p>
-                    <Link to={`/chef/${_id}`}><Button variant="secondary">view Details</Button></Link>
+                    <p className='d-flex align-items-center justify-content-center'><span></span> <FaThumbsUp> </FaThumbsUp>{total_view}</p>
+                    <Link to={`/chef/${category_id}`}>
+                        <Button variant="secondary">view Details</Button>
+                    </Link>
                 </Card.Footer>
             </Card>
         </Col>
