@@ -1,14 +1,26 @@
 import React, { createContext } from 'react';
-import { getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import app from '../firebase/firebase.config';
 
 export const AuthContext = createContext(null);
 
-const auth = getAuth(app)
+const auth = getAuth(app);
+
 const AuthProvider = ({children}) => {
-    const user = {displayName: 'muri khan'};
+    const user = null;
+// create user 
+    const createUser = (email, password)=>{
+        return createUserWithEmailAndPassword(auth, email, password);
+    }
+// sign in user
+    const sinIn = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password);
+    }
+// privet route    
     const authInfo = {
-        user
+        user,
+        createUser,
+        sinIn
     };
 
     return (

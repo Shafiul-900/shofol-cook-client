@@ -16,7 +16,7 @@ const Nevigation = () => {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mx-auto text-center">
-                            <Nav.Link href="/">Home</Nav.Link>
+                            <Nav.Link href="/country/0">Home</Nav.Link>
                             <Nav.Link href="#pricing">About</Nav.Link>
                             <Nav.Link href="#pricing">Contact</Nav.Link>
                         </Nav>
@@ -27,7 +27,7 @@ const Nevigation = () => {
 
                             {
                                 user ? <Button variant="secondary">Logout</Button> :
-                                    <Link to="/login"><Button variant="secondary">Login</Button></Link>
+                                <Link to='/login'><Button variant="secondary">Login</Button></Link>
                             }
                         </Nav>
                     </Navbar.Collapse>

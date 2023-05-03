@@ -45,7 +45,7 @@ const router = createBrowserRouter([
             {
                 path: ':id',
                 element: <Chef></Chef>,
-                loader: ({ params }) => fetch(`https://shofol-cook-server-shafiul-900.vercel.app/chef/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/chef/${params._id}`)
             }
         ]
     }
