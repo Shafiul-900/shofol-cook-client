@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { FaArrowLeft, FaArrowRight, FaRegStar, FaStar, FaThumbsUp } from 'react-icons/fa';
 import Rating from 'react-rating';
 import { Link, useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 const Chef = () => {
+    const {user} = useContext(AuthContext)
+    
     const chef = useLoaderData();
     const { _id, category_id, author, details, rating, total_view, experience, image_url, title } = chef;
     return (
