@@ -6,7 +6,13 @@ import { Link } from 'react-router-dom';
 
 const Nevigation = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+
+    const handelLogOut = () => {
+        logOut()
+        .then()
+        .catch(error => {console.log(error)})
+    }
 
     return (
         <div>
@@ -22,12 +28,12 @@ const Nevigation = () => {
                         </Nav>
                         <Nav>
                             {
-                             user &&   <Nav.Link href="#deets">{user.displayName}</Nav.Link>
+                                user && <Nav.Link href="#deets">{user.displayName}</Nav.Link>
                             }
 
                             {
-                                user ? <Button variant="secondary">Logout</Button> :
-                                <Link to='/login'><Button variant="secondary">Login</Button></Link>
+                                user ? <Button onClick={handelLogOut} variant="secondary">Logout</Button> :
+                                    <Link to='/login'><Button variant="secondary">Login</Button></Link>
                             }
                         </Nav>
                     </Navbar.Collapse>

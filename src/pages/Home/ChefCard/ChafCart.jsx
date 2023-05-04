@@ -21,7 +21,7 @@ const ChafCart = ({ data }) => {
                 </Card.Body>
                 <Card.Footer className='d-flex justify-content-between   align-items-center'>
                     <p className='d-flex align-items-center justify-content-center'><span></span> <FaThumbsUp> </FaThumbsUp>{total_view}</p>
-                    <Link to={`/chef/${category_id}`}>
+                    <Link to={`/chef/${_id}`}>
                         <Button variant="secondary">view Details</Button>
                     </Link>
                 </Card.Footer>

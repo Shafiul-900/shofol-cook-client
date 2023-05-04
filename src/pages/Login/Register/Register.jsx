@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 
 const Register = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, loggedGoogle } = useContext(AuthContext);
+    const [accepted, setAccepted] = useState(false)
 
     const handelRegister = event => {
         event.preventDefault();
@@ -22,6 +23,22 @@ const Register = () => {
         })
         .catch(error => {
             console.log(error)
+        })
+    }
+
+    const handelAccepted = event => {
+        setAccepted(event.target.checked);
+    }
+
+    // google sing in
+    const handelGoogleSignIn = () => {
+        loggedGoogle()
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error => {
+            console.log('error', error.message);
         })
     }
 
@@ -51,14 +68,14 @@ const Register = () => {
 
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check
-                       
+                       onClick={handelAccepted}
                         type="checkbox"
                         name="accept"
-                        label={<>Accept <Link to="/terms">Terms and condition</Link></>}
+                        label={<>Accept <Link to="/condation">Terms and condition</Link></>}
                     />
                 </Form.Group>
 
-                <Button variant="primary"  type="submit">
+                <Button variant="primary" disabled={!accepted}  type="submit">
                     Submit
                 </Button>
 
@@ -68,6 +85,8 @@ const Register = () => {
                     <Link to="/login">Login</Link>
                 </Form.Text>
             </Form>
+
+            <Link><Button onClick={handelGoogleSignIn} variant="secondary">SignIn With Google</Button></Link>
         </Container>
     );
 };

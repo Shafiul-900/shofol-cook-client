@@ -7,6 +7,8 @@ import Chef from "../pages/Chef/Chef/Chef";
 import LoginLayout from "../Layouts/LoginLayout";
 import Logon from "../pages/Login/Login/Logon";
 import Register from "../pages/Login/Register/Register";
+import PrivateRoute from "./PrivateRoute";
+import Condation from "../pages/shared/Condation/Condation";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/condation',
+                element: <Condation></Condation>
             }
         ]
     }, 
@@ -34,7 +40,7 @@ const router = createBrowserRouter([
             {
                 path: ':id',
                 element: <Country></Country>,
-                loader: ({ params }) => fetch(`https://shofol-cook-server-shafiul-900.vercel.app/chef-country/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/chef-country/${params.id}`)
             }
         ]
     },
@@ -43,8 +49,8 @@ const router = createBrowserRouter([
         element: <ChefView></ChefView>,
         children: [
             {
-                path: ':id',
-                element: <Chef></Chef>,
+                path: ':_id',
+                element: <PrivateRoute><Chef></Chef></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/chef/${params._id}`)
             }
         ]

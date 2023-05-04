@@ -1,11 +1,15 @@
 import React, { useContext } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 
 const Logon = () => {
-const { sinIn } = useContext(AuthContext)
+const { sinIn, loggedGoogle } = useContext(AuthContext)
+const navigate = useNavigate();
+const location = useLocation();
+const from = location?.state?.from?.pathname || '/country/0'
 
+// sign in with email and password
 const handelSighIn = event => {
     event.preventDefault();
     const form = event.target;
@@ -16,6 +20,21 @@ const handelSighIn = event => {
     .then(result => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        navigate(from, {replace: true});
+    })
+    .catch(error => {
+        console.log(error);
+    })
+}
+
+
+// sign in with google
+const handelGoogleSignIn = () => {
+    loggedGoogle()
+    .then(result => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        navigate(from, {replace: true});
     })
     .catch(error => {
         console.log(error);
@@ -46,6 +65,7 @@ const handelSighIn = event => {
                     <Link to="/register">Register</Link>
                 </Form.Text>
             </Form>
+            <Link><Button onClick={handelGoogleSignIn} variant="secondary">SignIn With Google</Button></Link>
         </Container>
     );
 };
