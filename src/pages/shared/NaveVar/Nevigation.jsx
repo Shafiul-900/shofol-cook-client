@@ -34,7 +34,7 @@ const Nevigation = () => {
                             <Navbar.Brand href="#home">
                                 {
                                     user && <img 
-                                    src={user?.photoURL}
+                                    src={user.photoURL}
                                     width="40"
                                     height="40"
                                     className="d-inline-block align-top rounded"

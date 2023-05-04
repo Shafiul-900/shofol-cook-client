@@ -5,6 +5,7 @@ import { AuthContext } from '../../../providers/AuthProvider';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 
 const Register = () => {
+    const [error, setError] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
     const { createUser, loggedGoogle, signInGitHub } = useContext(AuthContext);
@@ -27,6 +28,7 @@ const Register = () => {
                 navigate(from, {replace: true});
             })
             .catch(error => {
+                setError(error.message)
                 console.log(error)
             })
     }
@@ -44,6 +46,7 @@ const Register = () => {
                 navigate(from, {replace: true});
             })
             .catch(error => {
+                setError(error.message);
                 console.log('error', error.message);
             })
     }
@@ -104,6 +107,7 @@ const Register = () => {
                 </Form.Text>
             </Form>
         <hr></hr>
+        <p className='text-danger'>{error}</p>
         <hr></hr>
                 <Link onClick={handelGoogleSignIn}  className='py-2 fw-medium  text-white d-flex justify-content-center align-items-center bg-primary text-decoration-none'><FaGoogle className='pe-2  fs-3'></FaGoogle> SignUp With Google</Link>
                 <br></br>

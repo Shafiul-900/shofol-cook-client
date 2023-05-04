@@ -42,6 +42,9 @@ const Chef = () => {
                     <Link to={`/country/${category_id}`}><Button variant="primary"><FaArrowLeft></FaArrowLeft> Go Back</Button></Link>
                 </Card.Body>
             </Card>
+            <div>
+                
+            </div>
         </div>
     );
 };

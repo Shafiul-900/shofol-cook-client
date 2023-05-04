@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 
 const Logon = () => {
+const [error, setError] = useState('');
 const { sinIn, loggedGoogle } = useContext(AuthContext)
 const navigate = useNavigate();
 const location = useLocation();
@@ -24,7 +25,7 @@ const handelSighIn = event => {
         navigate(from, {replace: true});
     })
     .catch(error => {
-        console.log(error);
+        setError(error.message);
     })
 }
 
@@ -81,6 +82,7 @@ const handelGithubSignIn = () => {
             </Form>
 
             <hr></hr>
+            <p className='text-danger'>{error}</p>
             <hr></hr>
                 <Link onClick={handelGoogleSignIn}  className='py-2 fw-medium  text-white d-flex justify-content-center align-items-center bg-primary text-decoration-none'><FaGoogle className='pe-2  fs-3'></FaGoogle> Login With Google</Link>
                 <br></br>
