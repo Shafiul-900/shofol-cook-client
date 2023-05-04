@@ -2,9 +2,10 @@ import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
+import { FaGithub, FaGoogle } from 'react-icons/fa';
 
 const Register = () => {
-    const { createUser, loggedGoogle } = useContext(AuthContext);
+    const { createUser, loggedGoogle, signInGitHub } = useContext(AuthContext);
     const [accepted, setAccepted] = useState(false)
 
     const handelRegister = event => {
@@ -17,13 +18,13 @@ const Register = () => {
 
         console.log(email, password, name, photo)
         createUser(email, password)
-        .then(result => {
-            const createdUser = result.user;
-            console.log(createdUser);
-        })
-        .catch(error => {
-            console.log(error)
-        })
+            .then(result => {
+                const createdUser = result.user;
+                console.log(createdUser);
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     const handelAccepted = event => {
@@ -33,13 +34,25 @@ const Register = () => {
     // google sing in
     const handelGoogleSignIn = () => {
         loggedGoogle()
-        .then(result => {
-            const user = result.user;
-            console.log(user);
-        })
-        .catch(error => {
-            console.log('error', error.message);
-        })
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.log('error', error.message);
+            })
+    }
+
+    // github signIn 
+    const handelGithubSignIn = () => {
+        signInGitHub()
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.log('error', error.message);
+            })
     }
 
     return (
@@ -68,14 +81,14 @@ const Register = () => {
 
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check
-                       onClick={handelAccepted}
+                        onClick={handelAccepted}
                         type="checkbox"
                         name="accept"
                         label={<>Accept <Link to="/condation">Terms and condition</Link></>}
                     />
                 </Form.Group>
 
-                <Button variant="primary" disabled={!accepted}  type="submit">
+                <Button variant="primary" disabled={!accepted} type="submit">
                     Submit
                 </Button>
 
@@ -85,8 +98,11 @@ const Register = () => {
                     <Link to="/login">Login</Link>
                 </Form.Text>
             </Form>
-
-            <Link><Button onClick={handelGoogleSignIn} variant="secondary">SignIn With Google</Button></Link>
+        <hr></hr>
+        <hr></hr>
+                <Link onClick={handelGoogleSignIn}  className='py-2 fw-medium  text-white d-flex justify-content-center align-items-center bg-primary text-decoration-none'><FaGoogle className='pe-2  fs-3'></FaGoogle> SignUp With Google</Link>
+                <br></br>
+                <Link onClick={handelGithubSignIn} className='py-2 fw-medium  text-white d-flex justify-content-center align-items-center bg-primary text-decoration-none' variant="secondary"><FaGithub className='pe-2  fs-3'></FaGithub> SignUp With GitHub</Link>
         </Container>
     );
 };

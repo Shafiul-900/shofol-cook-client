@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import app from '../firebase/firebase.config';
 
 export const AuthContext = createContext(null);
@@ -10,7 +10,8 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true)
 
-    const provider = new GoogleAuthProvider()
+    const GoogleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
     // create user 
     const createUser = (email, password) => {
         setLoading(true);
@@ -28,9 +29,13 @@ const AuthProvider = ({ children }) => {
         return signOut(auth);
     }
 
-    // sign in with
+    // sign in with google
     const loggedGoogle = () => {
-        return signInWithPopup(auth, provider);
+        return signInWithPopup(auth, GoogleProvider);
+    }
+    //  signIn with github 
+    const signInGitHub = () => {
+        return signInWithPopup(auth, githubProvider);
     }
 
     // privet route 
@@ -51,7 +56,8 @@ const AuthProvider = ({ children }) => {
         createUser,
         sinIn,
         logOut,
-        loggedGoogle
+        loggedGoogle,
+        signInGitHub
     };
 
     return (

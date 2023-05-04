@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
+import { FaGithub, FaGoogle } from 'react-icons/fa';
 
 const Logon = () => {
 const { sinIn, loggedGoogle } = useContext(AuthContext)
@@ -40,6 +41,19 @@ const handelGoogleSignIn = () => {
         console.log(error);
     })
 }
+
+// login with github 
+const handelGithubSignIn = () => {
+    signInGitHub()
+    .then(result => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        navigate(from, {replace: true});
+    })
+    .catch(error => {
+        console.log(error);
+    })
+}
     return (
         <Container className='w-25 mx-auto mt-5'>
             <h3>Please Login</h3>
@@ -65,7 +79,12 @@ const handelGoogleSignIn = () => {
                     <Link to="/register">Register</Link>
                 </Form.Text>
             </Form>
-            <Link><Button onClick={handelGoogleSignIn} variant="secondary">SignIn With Google</Button></Link>
+
+            <hr></hr>
+            <hr></hr>
+                <Link onClick={handelGoogleSignIn}  className='py-2 fw-medium  text-white d-flex justify-content-center align-items-center bg-primary text-decoration-none'><FaGoogle className='pe-2  fs-3'></FaGoogle> Login With Google</Link>
+                <br></br>
+                <Link onClick={handelGithubSignIn} className='py-2 fw-medium  text-white d-flex justify-content-center align-items-center bg-primary text-decoration-none' variant="secondary"><FaGithub className='pe-2  fs-3'></FaGithub> Login With GitHub</Link>
         </Container>
     );
 };
