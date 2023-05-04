@@ -8,14 +8,34 @@ import { Link, useLoaderData } from 'react-router-dom';
 const Recipe = () => {
     const recipe = useLoaderData();
     const [active, setActive] = useState(true)
+    const [active2, setActive2] = useState(true)
+    const [active3, setActive3] = useState(true)
     const { recipes, rating } = recipe;
 
-    const fevariteHandel = () => {
+    const handel2 = () => {
         setActive(prev => !prev);
-        if(active){
+        if (active) {
+            toast(' Cnceled  your favorite recipes');
+        }
+        else {
+            toast('success  your favorite recipes');
+        }
+    }
+    const fevariteHandel2 = () => {
+        setActive2(prev => !prev);
+        if (active) {
             toast('Cnceled  your favorite recipes');
         }
-        else{
+        else {
+            toast('success  your favorite recipes');
+        }
+    }
+    const fevariteHandel3 = () => {
+        setActive3(prev => !prev);
+        if (active) {
+            toast('Cnceled  your favorite recipes');
+        }
+        else {
             toast('success  your favorite recipes');
         }
     }
@@ -25,7 +45,7 @@ const Recipe = () => {
             <Row xs={1} md={2} lg={3} className="g-4">
                 <Col>
                     <Card>
-                        <Card.Img variant="top" src={recipes.recipe1.resipe_img} />
+                        <Card.Img variant="top" style={{height:"300px"}} src={recipes.recipe1.resipe_img} />
                         <Card.Body>
                             <Card.Title>{recipes.recipe1.name}</Card.Title>
                             <Card.Text>
@@ -36,6 +56,22 @@ const Recipe = () => {
                                     <li>{recipes.recipe3.build?.itms4}</li>
                                 </ul>
                             </Card.Text>
+                            <div className='d-flex justify-content-between align-item-center'>
+                                <div>
+                                    <Rating
+                                        placeholderRating={rating.number}
+                                        readonly
+                                        emptySymbol={<FaRegStar></FaRegStar>}
+                                        placeholderSymbol={<FaStar></FaStar>}
+                                        fullSymbol={<FaStar></FaStar>}
+                                    >
+                                    </Rating>
+                                    <span className='ms-3'>{rating.number}</span>
+                                </div>
+                                <span onClick={handel2} className={active ? 'text-danger' : 'text-black'}><FaHeart></FaHeart>
+                                </span>
+                                <Toaster></Toaster>
+                            </div>
                         </Card.Body>
                     </Card>
                 </Col>
@@ -52,6 +88,22 @@ const Recipe = () => {
                                     <li>{recipes.recipe3.build?.itms4}</li>
                                 </ul>
                             </Card.Text>
+                            <div className='d-flex justify-content-between align-item-center'>
+                                <div>
+                                    <Rating
+                                        placeholderRating={rating.number}
+                                        readonly
+                                        emptySymbol={<FaRegStar></FaRegStar>}
+                                        placeholderSymbol={<FaStar></FaStar>}
+                                        fullSymbol={<FaStar></FaStar>}
+                                    >
+                                    </Rating>
+                                    <span className='ms-3'>{rating.number}</span>
+                                </div>
+                                <span onClick={fevariteHandel2} className={active2 ? 'text-danger' : 'text-black'}><FaHeart></FaHeart>
+                                </span>
+                                <Toaster></Toaster>
+                            </div>
                         </Card.Body>
                     </Card>
                 </Col>
@@ -80,7 +132,7 @@ const Recipe = () => {
                                     </Rating>
                                     <span className='ms-3'>{rating.number}</span>
                                 </div>
-                                <span onClick={fevariteHandel} className={active ? 'text-danger' : 'text-black'}><FaHeart></FaHeart>
+                                <span onClick={fevariteHandel3} className={active3 ? 'text-danger' : 'text-black'}><FaHeart></FaHeart>
                                 </span>
                                 <Toaster></Toaster>
                             </div>

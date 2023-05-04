@@ -9,6 +9,7 @@ import Logon from "../pages/Login/Login/Logon";
 import Register from "../pages/Login/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import Condation from "../pages/shared/Condation/Condation";
+import About from "../pages/Home/About/About";
 
 const router = createBrowserRouter([
     {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Navigate to='/country/0'></Navigate>
+            },
+            {
+                path: '/about',
+                element: <About></About>
             },
             {
                 path: '/login',
