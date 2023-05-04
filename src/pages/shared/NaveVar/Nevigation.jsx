@@ -24,7 +24,7 @@ const Nevigation = () => {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mx-auto text-center">
                             <Nav.Link href="/country/0">Home</Nav.Link>
-                            <Nav.Link href="/about">About</Nav.Link>
+                            <Nav.Link href="/about">Blog</Nav.Link>
                             <Nav.Link href="#pricing">Contact</Nav.Link>
                         </Nav>
                         <Nav>
@@ -33,7 +33,7 @@ const Nevigation = () => {
                             }
                             <Navbar.Brand href="#home">
                                 {
-                                    user && <img 
+                                    user?.photoURL && <img 
                                     src={user.photoURL}
                                     width="40"
                                     height="40"
