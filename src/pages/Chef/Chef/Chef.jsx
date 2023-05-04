@@ -4,6 +4,7 @@ import { FaArrowLeft, FaArrowRight, FaRegStar, FaStar, FaThumbsUp } from 'react-
 import Rating from 'react-rating';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
+import Recipe from '../Recipe/Recipe';
 
 const Chef = () => {
     const {user} = useContext(AuthContext)
@@ -42,9 +43,7 @@ const Chef = () => {
                     <Link to={`/country/${category_id}`}><Button variant="primary"><FaArrowLeft></FaArrowLeft> Go Back</Button></Link>
                 </Card.Body>
             </Card>
-            <div>
-                
-            </div>
+            <Recipe></Recipe>
         </div>
     );
 };
